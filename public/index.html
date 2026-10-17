@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Sign in to Student Records</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <header class="bar">
+    <span class="brand">Student Records</span>
+    <span class="pilot">Pilot portal for ICS570 Lab 2, with fictional data</span>
+  </header>
+  <main class="page narrow">
+    <h1>Sign in to your record</h1>
+    <p class="lede">Use the passkey saved on this device. You will confirm with Touch ID or your device PIN.</p>
+    <form id="signin-form">
+      <label for="signin-id">Account ID</label>
+      <input id="signin-id" name="userId" autocomplete="username" placeholder="For example, S001" required>
+      <button id="signin-submit" class="primary" type="submit">Sign in with passkey</button>
+    </form>
+
+    <details id="enroll" class="enroll">
+      <summary>First time here? Set up a passkey</summary>
+      <p>You need the one-time enrollment code the Registrar gave you in person.</p>
+      <form id="enroll-form">
+        <label for="enroll-id">Account ID</label>
+        <input id="enroll-id" name="userId" placeholder="For example, S001" required>
+        <label for="enroll-code">Enrollment code</label>
+        <input id="enroll-code" name="code" autocomplete="one-time-code" placeholder="XXXX-XXXX-XXXX" required>
+        <button id="enroll-submit" class="primary" type="submit">Check code</button>
+      </form>
+      <div id="register-step" class="next-step" hidden>
+        <p id="register-hello"></p>
+        <button id="register-passkey" class="primary" type="button">Create passkey</button>
+      </div>
+    </details>
+
+    <p id="status" role="status" aria-live="polite"></p>
+  </main>
+  <script src="/vendor/simplewebauthn-browser.js"></script>
+  <script src="/login.js"></script>
+</body>
+</html>

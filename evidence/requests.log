@@ -1,0 +1,67 @@
+[S001] GET / -> 200  
+[S001] POST /enroll/start -> 200  {"userId":"S001","code":"<redacted>"}
+[S001] GET /webauthn/register/options -> 200  
+[S001] POST /webauthn/register/verify -> 200  {"id":"K3CiY8VECTQ1...","type":"public-key","response":{"attestationObject":"o2NmbXRkbm9uZWdh...","clientDataJSON":"eyJ0eXBlIjoid2Vi...","transports":["internal"],"publicKeyAlgorithm":-8,"publicKey":"MCowBQYDK2VwAyEA...","authenticatorData":"SZYN5YgOjGh0NBcP..."}}
+[S001] GET / -> 200  
+[S001] POST /webauthn/login/options -> 200  {"userId":"S001"}
+[S001] POST /webauthn/login/verify -> 200  {"id":"K3CiY8VECTQ1...","type":"public-key","response":{"authenticatorData":"SZYN5YgOjGh0NBcP...","clientDataJSON":"eyJ0eXBlIjoid2Vi...","signature":"uy7PG4PccvMEngD8...","userHandle":"WDOoAz9XlXC0qRUb..."}}
+[S001] GET /app -> 200  
+[S001] GET /me -> 200  
+[S001] GET /students/S001 -> 200  
+[S001] GET /me -> 200  
+[S001] POST /logout -> 200  {}
+[S001] GET / -> 200  
+[S001] POST /webauthn/login/options -> 200  {"userId":"S001"}
+[S001] POST /webauthn/login/verify -> 400  {"id":"K3CiY8VECTQ1...","type":"public-key","response":{"authenticatorData":"SZYN5YgOjGh0NBcP...","clientDataJSON":"eyJ0eXBlIjoid2Vi...","signature":"uy7PG4PccvMEngD8...","userHandle":"WDOoAz9XlXC0qRUb..."}}
+[S001] POST /webauthn/login/verify (replayed T2 body) -> 400    response={"verified":false,"error":"Sign-in could not be verified","reason":"Unexpected authentication response challenge \"...\"...
+[S001] GET /me -> 401  
+[S001] GET / -> 200  
+[S001] POST /webauthn/login/options -> 200  {"userId":"S001"}
+[S001] POST /webauthn/login/verify -> 400  {"id":"K3CiY8VECTQ1...","type":"public-key","response":{"authenticatorData":"SZYN5YgOjGh0NBcP...","clientDataJSON":"eyJ0eXBlIjoid2Vi...","signature":"V3cp1dtj9JYsz3s0...","userHandle":"WDOoAz9XlXC0qRUb..."}}
+[S001] GET /me -> 401  
+[anonymous] GET /students/S001 -> 401  response={"error":"Not signed in"}
+[S001] GET / -> 200  
+[S001] POST /webauthn/login/options -> 200  {"userId":"S001"}
+[S001] POST /webauthn/login/verify -> 200  {"id":"K3CiY8VECTQ1...","type":"public-key","response":{"authenticatorData":"SZYN5YgOjGh0NBcP...","clientDataJSON":"eyJ0eXBlIjoid2Vi...","signature":"MKzREMvbQ3LSLdNd...","userHandle":"WDOoAz9XlXC0qRUb..."}}
+[S001] GET /app -> 200  
+[S001] GET /me -> 200  
+[S001] GET /students/S001 -> 200  
+[S001] GET /students/S001 -> 200  
+[S001] GET /students/S001 -> 200    response={"student":{"id":"S001","name":"Ama Mensah","programme":"BSc Computer Science","year":2},"courses":[{"courseId":"C101","...
+[S001] GET /students/S002 -> 403  
+[S001] GET /app -> 200  
+[S001] GET /me -> 200  
+[S001] GET /students/S001 -> 200  
+[S001] GET /students/S002 -> 403  
+[S001] GET /students/S002 -> 403    response={"error":"Forbidden"}
+[S001] POST /courses/C101/grades/S002 -> 403  {"grade":"E","role":"lecturer","userId":"L001"}
+[S001] POST /courses/C101/grades/S002 -> 403  {"grade":"E","role":"lecturer","userId":"L001"}  response={"error":"Forbidden"}
+[L001] GET / -> 200  
+[L001] POST /enroll/start -> 200  {"userId":"L001","code":"<redacted>"}
+[L001] GET /webauthn/register/options -> 200  
+[L001] POST /webauthn/register/verify -> 200  {"id":"Ad4uid_vlo9n...","type":"public-key","response":{"attestationObject":"o2NmbXRkbm9uZWdh...","clientDataJSON":"eyJ0eXBlIjoid2Vi...","transports":["internal"],"publicKeyAlgorithm":-8,"publicKey":"MCowBQYDK2VwAyEA...","authenticatorData":"SZYN5YgOjGh0NBcP..."}}
+[L001] GET / -> 200  
+[L001] POST /webauthn/login/options -> 200  {"userId":"L001"}
+[L001] POST /webauthn/login/verify -> 200  {"id":"Ad4uid_vlo9n...","type":"public-key","response":{"authenticatorData":"SZYN5YgOjGh0NBcP...","clientDataJSON":"eyJ0eXBlIjoid2Vi...","signature":"nI8B1TyGYvs7myXt...","userHandle":"bivRpkC_wFmTLjpU..."}}
+[L001] GET /app -> 200  
+[L001] GET /me -> 200  
+[L001] GET /courses/C101/roster -> 200  
+[L001] POST /courses/C101/grades/S001 -> 200  {"grade":"A"}
+[L001] POST /courses/C102/grades/S002 -> 403  {"grade":"A"}
+[L001] POST /courses/C102/grades/S002 -> 403  {"grade":"A"}  response={"error":"Forbidden"}
+[L001] GET /students/S002 -> 200  
+[L001] GET /students/S002 -> 200    response={"student":{"id":"S002","name":"Kwame Boateng","programme":"BSc Computer Science","year":2},"courses":[{"courseId":"C101...
+[L001] POST /enroll/start -> 400  {"userId":"S001","code":"<redacted>"}
+[L001-browser] POST /enroll/start (S001 code reused) -> 400  {"userId":"S001","code":"<used code>"}  response={"error":"Invalid or expired enrollment code"}
+[anonymous] GET /webauthn/register/options -> 401
+[S001] POST /logout -> 200  {}
+[S001] GET / -> 200  
+[S001] GET /students/S001 -> 401  
+[S001] GET /students/S001 (after logout) -> 401    response={"error":"Not signed in"}
+[S001] POST /webauthn/login/options -> 200  {"userId":"S001"}
+[S001] POST /webauthn/login/verify -> 400  {"id":"K3CiY8VECTQ1...","type":"public-key","response":{"authenticatorData":"SZYN5YgOjGh0NBcP...","clientDataJSON":"eyJ0eXBlIjoid2Vi...","signature":"eG8v0T604qj7CmXF...","userHandle":"WDOoAz9XlXC0qRUb..."}}
+[S001] POST /webauthn/login/verify -> 200  {"id":"K3CiY8VECTQ1...","type":"public-key","response":{"authenticatorData":"SZYN5YgOjGh0NBcP...","clientDataJSON":"eyJ0eXBlIjoid2Vi...","signature":"eG8v0T604qj7CmXF...","userHandle":"WDOoAz9XlXC0qRUb..."}}
+[S001] POST /webauthn/login/verify x2 in parallel (same response) -> 200, 400
+[L001] POST /courses/C101/grades/S001 -> 403  {"grade":"B"}
+[L001] POST /courses/C101/grades/S001 (after unassign) -> 403  {"grade":"B"}  response={"error":"Forbidden"}
+[L001] GET /students/S001 -> 403  

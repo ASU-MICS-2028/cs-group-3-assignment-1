@@ -1,0 +1,160 @@
+{
+  "runAt": "2026-10-17T14:52:04.582Z",
+  "node": "v22.22.0",
+  "origin": "http://localhost:3000",
+  "results": [
+    {
+      "test": "T1",
+      "identity": "S001",
+      "action": "Enroll with one-time code, then register a passkey",
+      "expected": "Credential stored for S001; public key server-side",
+      "observed": "200 verified; passkeys row: user_id=S001, credential K3CiY8VECT..., public key 42 bytes",
+      "http": 200,
+      "pass": true,
+      "evidence": "T1-S001-registers-passkey.png"
+    },
+    {
+      "test": "T2",
+      "identity": "S001",
+      "action": "Sign in with the registered passkey",
+      "expected": "Fresh challenge verified; session created",
+      "observed": "200 verified; GET /me -> 200 {\"id\":\"S001\",\"role\":\"student\",\"name\":\"Ama Mensah\",\"courses\":[]}",
+      "http": 200,
+      "pass": true,
+      "evidence": "T2-S001-signs-in.png"
+    },
+    {
+      "test": "T3a",
+      "identity": "S001",
+      "action": "Log out, get a fresh challenge, resend the captured T2 sign-in response",
+      "expected": "Rejected; no session",
+      "observed": "400 Unexpected authentication response challenge \"...\", expected \"...\"; GET /me -> 401",
+      "http": 400,
+      "pass": true,
+      "evidence": "T3a-replayed-response-rejected.png"
+    },
+    {
+      "test": "T3b",
+      "identity": "S001",
+      "action": "Change one character of the signature in a live sign-in response",
+      "expected": "Rejected; no session",
+      "observed": "400 signature not verified; GET /me -> 401",
+      "http": 400,
+      "pass": true,
+      "evidence": "T3b-tampered-signature-rejected.png"
+    },
+    {
+      "test": "T4",
+      "identity": "none",
+      "action": "GET /students/S001 with no session (fresh browser profile)",
+      "expected": "Denied (401)",
+      "observed": "401 {\"error\":\"Not signed in\"}",
+      "http": 401,
+      "pass": true,
+      "evidence": "T4-no-session-401.png"
+    },
+    {
+      "test": "T5",
+      "identity": "S001",
+      "action": "GET /students/S001 (own record)",
+      "expected": "Allowed (200)",
+      "observed": "200 {\"student\":{\"id\":\"S001\",\"name\":\"Ama Mensah\",\"programme\":\"BSc Computer Science\",\"year\":2},\"...",
+      "http": 200,
+      "pass": true,
+      "evidence": "T5-S001-reads-own-record.png"
+    },
+    {
+      "test": "T6",
+      "identity": "S001",
+      "action": "GET /students/S002 by editing the URL, then by fetch()",
+      "expected": "Denied by server (403)",
+      "observed": "URL 403; fetch 403 {\"error\":\"Forbidden\"}",
+      "http": 403,
+      "pass": true,
+      "evidence": "T6-S001-reads-S002-403.png"
+    },
+    {
+      "test": "T7",
+      "identity": "S001",
+      "action": "POST /courses/C101/grades/S002 by fetch() (body claims role=lecturer)",
+      "expected": "Denied (403); grade unchanged",
+      "observed": "403 {\"error\":\"Forbidden\"}; S002 C101 grade A before, A after",
+      "http": 403,
+      "pass": true,
+      "evidence": "T6-T7-S001-direct-requests-denied.png"
+    },
+    {
+      "test": "T8",
+      "identity": "L001",
+      "action": "Change S001's C101 grade in the UI and save",
+      "expected": "Allowed (200); lecturer-course link verified",
+      "observed": "200; S001 C101 grade B+ -> A; audit line written",
+      "http": 200,
+      "pass": true,
+      "evidence": "T8-L001-updates-C101-grade.png, audit-log.txt"
+    },
+    {
+      "test": "X1",
+      "identity": "L001",
+      "action": "POST /courses/C102/grades/S002 (a course L001 does not teach)",
+      "expected": "Denied (403)",
+      "observed": "403 {\"error\":\"Forbidden\"}; S002 C102 grade still B",
+      "http": 403,
+      "pass": true
+    },
+    {
+      "test": "X2",
+      "identity": "L001",
+      "action": "GET /students/S002 (S002 takes C101 and C102)",
+      "expected": "Allowed, but only the C101 part",
+      "observed": "200; courses returned: C101",
+      "http": 200,
+      "pass": true
+    },
+    {
+      "test": "X3",
+      "identity": "any",
+      "action": "Reuse S001's enrollment code after T1",
+      "expected": "Rejected (single use)",
+      "observed": "400 {\"error\":\"Invalid or expired enrollment code\"}",
+      "http": 400,
+      "pass": true
+    },
+    {
+      "test": "X4",
+      "identity": "none",
+      "action": "GET /webauthn/register/options without enrolling",
+      "expected": "Denied (401)",
+      "observed": "401 {\"error\":\"Enter your account ID and enrollment code first\"}",
+      "http": 401,
+      "pass": true
+    },
+    {
+      "test": "X5",
+      "identity": "S001",
+      "action": "Log out, then GET /students/S001",
+      "expected": "Denied (401)",
+      "observed": "401 {\"error\":\"Not signed in\"}",
+      "http": 401,
+      "pass": true
+    },
+    {
+      "test": "X7",
+      "identity": "S001",
+      "action": "Send one valid sign-in response twice in parallel",
+      "expected": "Exactly one succeeds",
+      "observed": "statuses 200 and 400",
+      "http": "200/400",
+      "pass": true
+    },
+    {
+      "test": "X6",
+      "identity": "L001",
+      "action": "Registrar removes L001 from C101; L001 (still signed in) retries a C101 grade change",
+      "expected": "Denied on the very next request",
+      "observed": "403 {\"error\":\"Forbidden\"}; GET /students/S001 -> 403; grade still A",
+      "http": 403,
+      "pass": true
+    }
+  ]
+}

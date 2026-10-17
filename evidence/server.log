@@ -1,0 +1,112 @@
+[2026-10-17T14:51:27.526Z] SESSION_SECRET not set: using a random secret for this run (sessions end on restart)
+[2026-10-17T14:51:48.424Z] GET / -> 200 user=-
+[2026-10-17T14:51:48.474Z] GET /style.css -> 200 user=-
+[2026-10-17T14:51:48.477Z] GET /vendor/simplewebauthn-browser.js -> 200 user=-
+[2026-10-17T14:51:48.481Z] GET /login.js -> 200 user=-
+[2026-10-17T14:51:48.645Z] GET /favicon.ico -> 404 user=-
+[2026-10-17T14:51:48.930Z] AUDIT actor=S001 action=enroll.start target=S001 outcome=allowed
+[2026-10-17T14:51:48.933Z] POST /enroll/start -> 200 user=-
+[2026-10-17T14:51:49.032Z] GET /webauthn/register/options -> 200 user=-
+[2026-10-17T14:51:49.073Z] AUDIT actor=S001 action=passkey.register target=S001 outcome=allowed detail="credential=K3CiY8VE..."
+[2026-10-17T14:51:49.075Z] POST /webauthn/register/verify -> 200 user=-
+[2026-10-17T14:51:49.262Z] GET / -> 200 user=-
+[2026-10-17T14:51:49.286Z] GET /style.css -> 200 user=-
+[2026-10-17T14:51:49.289Z] GET /vendor/simplewebauthn-browser.js -> 200 user=-
+[2026-10-17T14:51:49.301Z] GET /login.js -> 200 user=-
+[2026-10-17T14:51:49.401Z] POST /webauthn/login/options -> 200 user=-
+[2026-10-17T14:51:49.446Z] AUDIT actor=S001 action=login target=S001 outcome=allowed
+[2026-10-17T14:51:49.448Z] POST /webauthn/login/verify -> 200 user=S001
+[2026-10-17T14:51:49.463Z] GET /app -> 200 user=S001
+[2026-10-17T14:51:49.493Z] GET /style.css -> 200 user=S001
+[2026-10-17T14:51:49.495Z] GET /portal.js -> 200 user=S001
+[2026-10-17T14:51:49.546Z] GET /me -> 200 user=S001
+[2026-10-17T14:51:49.554Z] GET /students/S001 -> 200 user=S001
+[2026-10-17T14:51:49.748Z] GET /me -> 200 user=S001
+[2026-10-17T14:51:51.517Z] AUDIT actor=S001 action=logout target=S001 outcome=allowed
+[2026-10-17T14:51:51.519Z] POST /logout -> 200 user=-
+[2026-10-17T14:51:51.539Z] GET / -> 200 user=-
+[2026-10-17T14:51:51.565Z] GET /style.css -> 200 user=-
+[2026-10-17T14:51:51.566Z] GET /vendor/simplewebauthn-browser.js -> 200 user=-
+[2026-10-17T14:51:51.568Z] GET /login.js -> 200 user=-
+[2026-10-17T14:51:51.624Z] POST /webauthn/login/options -> 200 user=-
+[2026-10-17T14:51:51.636Z] AUDIT actor=- action=login target=S001 outcome=denied detail="Unexpected authentication response challenge "...", expected "...""
+[2026-10-17T14:51:51.639Z] POST /webauthn/login/verify -> 400 user=-
+[2026-10-17T14:51:51.655Z] GET /me -> 401 user=-
+[2026-10-17T14:51:51.877Z] GET / -> 200 user=-
+[2026-10-17T14:51:51.927Z] GET /style.css -> 200 user=-
+[2026-10-17T14:51:51.930Z] GET /vendor/simplewebauthn-browser.js -> 200 user=-
+[2026-10-17T14:51:51.933Z] GET /login.js -> 200 user=-
+[2026-10-17T14:51:52.093Z] POST /webauthn/login/options -> 200 user=-
+[2026-10-17T14:51:52.150Z] AUDIT actor=- action=login target=S001 outcome=denied detail="signature not verified"
+[2026-10-17T14:51:52.152Z] POST /webauthn/login/verify -> 400 user=-
+[2026-10-17T14:51:52.521Z] GET /me -> 401 user=-
+[2026-10-17T14:51:53.606Z] GET /students/S001 -> 401 user=-
+[2026-10-17T14:51:54.512Z] GET / -> 200 user=-
+[2026-10-17T14:51:54.537Z] GET /style.css -> 200 user=-
+[2026-10-17T14:51:54.539Z] GET /vendor/simplewebauthn-browser.js -> 200 user=-
+[2026-10-17T14:51:54.539Z] GET /login.js -> 200 user=-
+[2026-10-17T14:51:54.686Z] POST /webauthn/login/options -> 200 user=-
+[2026-10-17T14:51:54.713Z] AUDIT actor=S001 action=login target=S001 outcome=allowed
+[2026-10-17T14:51:54.714Z] POST /webauthn/login/verify -> 200 user=S001
+[2026-10-17T14:51:54.730Z] GET /app -> 200 user=S001
+[2026-10-17T14:51:54.757Z] GET /style.css -> 200 user=S001
+[2026-10-17T14:51:54.760Z] GET /portal.js -> 200 user=S001
+[2026-10-17T14:51:54.790Z] GET /me -> 200 user=S001
+[2026-10-17T14:51:54.815Z] GET /students/S001 -> 200 user=S001
+[2026-10-17T14:51:54.885Z] GET /students/S001 -> 200 user=S001
+[2026-10-17T14:51:55.036Z] AUDIT actor=S001 action=student.read target=S002 outcome=denied detail="role=student"
+[2026-10-17T14:51:55.038Z] GET /students/S002 -> 403 user=S001
+[2026-10-17T14:51:55.764Z] GET /app -> 200 user=S001
+[2026-10-17T14:51:55.977Z] GET /style.css -> 200 user=S001
+[2026-10-17T14:51:55.977Z] GET /portal.js -> 200 user=S001
+[2026-10-17T14:51:55.984Z] GET /me -> 200 user=S001
+[2026-10-17T14:51:56.274Z] GET /students/S001 -> 200 user=S001
+[2026-10-17T14:51:56.468Z] AUDIT actor=S001 action=student.read target=S002 outcome=denied detail="role=student"
+[2026-10-17T14:51:56.473Z] GET /students/S002 -> 403 user=S001
+[2026-10-17T14:51:56.492Z] AUDIT actor=S001 action=grade.update target=C101/S002 outcome=denied detail="role=student"
+[2026-10-17T14:51:56.495Z] POST /courses/C101/grades/S002 -> 403 user=S001
+[2026-10-17T14:51:58.984Z] GET / -> 200 user=-
+[2026-10-17T14:51:59.027Z] GET /style.css -> 200 user=-
+[2026-10-17T14:51:59.030Z] GET /vendor/simplewebauthn-browser.js -> 200 user=-
+[2026-10-17T14:51:59.033Z] GET /login.js -> 200 user=-
+[2026-10-17T14:52:01.008Z] AUDIT actor=L001 action=enroll.start target=L001 outcome=allowed
+[2026-10-17T14:52:01.020Z] POST /enroll/start -> 200 user=-
+[2026-10-17T14:52:01.156Z] GET /webauthn/register/options -> 200 user=-
+[2026-10-17T14:52:01.187Z] AUDIT actor=L001 action=passkey.register target=L001 outcome=allowed detail="credential=Ad4uid_v..."
+[2026-10-17T14:52:01.189Z] POST /webauthn/register/verify -> 200 user=-
+[2026-10-17T14:52:01.210Z] GET / -> 200 user=-
+[2026-10-17T14:52:01.231Z] GET /style.css -> 200 user=-
+[2026-10-17T14:52:01.237Z] GET /vendor/simplewebauthn-browser.js -> 200 user=-
+[2026-10-17T14:52:01.239Z] GET /login.js -> 200 user=-
+[2026-10-17T14:52:01.357Z] POST /webauthn/login/options -> 200 user=-
+[2026-10-17T14:52:01.383Z] AUDIT actor=L001 action=login target=L001 outcome=allowed
+[2026-10-17T14:52:01.385Z] POST /webauthn/login/verify -> 200 user=L001
+[2026-10-17T14:52:01.401Z] GET /app -> 200 user=L001
+[2026-10-17T14:52:01.443Z] GET /style.css -> 200 user=L001
+[2026-10-17T14:52:01.445Z] GET /portal.js -> 200 user=L001
+[2026-10-17T14:52:01.459Z] GET /me -> 200 user=L001
+[2026-10-17T14:52:01.472Z] GET /courses/C101/roster -> 200 user=L001
+[2026-10-17T14:52:01.665Z] AUDIT actor=L001 action=grade.update target=C101/S001 outcome=allowed detail="B+ -> A"
+[2026-10-17T14:52:01.666Z] POST /courses/C101/grades/S001 -> 200 user=L001
+[2026-10-17T14:52:01.825Z] AUDIT actor=L001 action=grade.update target=C102/S002 outcome=denied detail="role=lecturer"
+[2026-10-17T14:52:01.828Z] POST /courses/C102/grades/S002 -> 403 user=L001
+[2026-10-17T14:52:01.840Z] GET /students/S002 -> 200 user=L001
+[2026-10-17T14:52:01.853Z] AUDIT actor=- action=enroll.start target=S001 outcome=denied detail="code already used"
+[2026-10-17T14:52:01.856Z] POST /enroll/start -> 400 user=L001
+[2026-10-17T14:52:01.891Z] GET /webauthn/register/options -> 401 user=-
+[2026-10-17T14:52:02.120Z] AUDIT actor=S001 action=logout target=S001 outcome=allowed
+[2026-10-17T14:52:02.122Z] POST /logout -> 200 user=-
+[2026-10-17T14:52:02.190Z] GET / -> 200 user=-
+[2026-10-17T14:52:02.252Z] GET /style.css -> 200 user=-
+[2026-10-17T14:52:02.258Z] GET /vendor/simplewebauthn-browser.js -> 200 user=-
+[2026-10-17T14:52:02.261Z] GET /login.js -> 200 user=-
+[2026-10-17T14:52:02.287Z] GET /students/S001 -> 401 user=-
+[2026-10-17T14:52:02.389Z] POST /webauthn/login/options -> 200 user=-
+[2026-10-17T14:52:02.440Z] AUDIT actor=- action=login target=(none) outcome=denied detail="no pending challenge (used, expired or never issued)"
+[2026-10-17T14:52:02.442Z] POST /webauthn/login/verify -> 400 user=-
+[2026-10-17T14:52:02.444Z] AUDIT actor=S001 action=login target=S001 outcome=allowed
+[2026-10-17T14:52:02.446Z] POST /webauthn/login/verify -> 200 user=S001
+[2026-10-17T14:52:02.456Z] AUDIT actor=L001 action=grade.update target=C101/S001 outcome=denied detail="role=lecturer"
+[2026-10-17T14:52:02.457Z] POST /courses/C101/grades/S001 -> 403 user=L001
+[2026-10-17T14:52:02.464Z] AUDIT actor=L001 action=student.read target=S001 outcome=denied detail="role=lecturer"
+[2026-10-17T14:52:02.466Z] GET /students/S001 -> 403 user=L001

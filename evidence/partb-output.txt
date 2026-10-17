@@ -1,0 +1,26 @@
+Key: 256-bit, random, in memory only (SHA-256 fingerprint 5c0d41513aad...)
+
+Plaintext record: {"studentId":"S001","name":"Ama Mensah","course":"C101","grade":"B+","note":"synthetic record"}
+
+1. Encrypt and decrypt
+   nonce      ea25a29505ad40660e041e71 (96 bits)
+   ciphertext 2decb7247ba13ad8ad2710548e21ebf5... (95 bytes)
+   tag        857eedda01e91d6dfa2ffbe67e96cff7 (128 bits)
+   decrypted  {"studentId":"S001","name":"Ama Mensah","course":"C101","grade":"B+","note":"synthetic record"}
+   identical to original: true
+
+2. Fresh nonce per encryption (same key, same record)
+   nonce #1 ea25a29505ad40660e041e71   ciphertext #1 2decb7247ba13ad8ad271054...
+   nonce #2 347315fae9a38d89298c172f   ciphertext #2 637689ebf1ee88d6ce4a78bb...
+   nonces differ: true; ciphertexts differ: true
+
+3. Tamper tests (local copies)
+   ciphertext byte 5 flipped: REJECTED, Unsupported state or unable to authenticate data
+   tag byte 0 flipped       : REJECTED, Unsupported state or unable to authenticate data
+   wrong key                : REJECTED, Unsupported state or unable to authenticate data
+
+All tamper attempts rejected: true
+
+Why nonce reuse is dangerous: GCM encrypts by XOR with a keystream derived from key + nonce.
+Reusing a nonce with the same key reuses the keystream, so XOR of two ciphertexts = XOR of the
+two plaintexts, and it exposes the authentication key, letting an attacker forge valid tags.

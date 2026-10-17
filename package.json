@@ -1,0 +1,27 @@
+{
+  "name": "student-records-portal",
+  "version": "1.0.0",
+  "description": "ICS570 Lab 2: passkey sign-in, role- and ownership-based authorization, security tests T1-T8",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=22.13.0"
+  },
+  "scripts": {
+    "seed": "node --no-warnings=ExperimentalWarning scripts/seed.js",
+    "start": "node --no-warnings=ExperimentalWarning server.js",
+    "evidence": "node --no-warnings=ExperimentalWarning scripts/evidence.js",
+    "partb": "node part-b/aes-gcm-demo.js",
+    "admin": "node --no-warnings=ExperimentalWarning scripts/admin.js"
+  },
+  "dependencies": {
+    "@simplewebauthn/browser": "^14.0.0",
+    "@simplewebauthn/server": "^14.0.3",
+    "express": "^5.3.0",
+    "express-rate-limit": "^8.7.1",
+    "express-session": "^1.19.0"
+  },
+  "devDependencies": {
+    "playwright-core": "1.56"
+  }
+}

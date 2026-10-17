@@ -1,0 +1,22 @@
+2026-10-17T14:51:48.927Z  S001              enroll.start      S001       allowed  
+2026-10-17T14:51:49.072Z  S001              passkey.register  S001       allowed  credential=K3CiY8VE...
+2026-10-17T14:51:49.446Z  S001              login             S001       allowed  
+2026-10-17T14:51:51.516Z  S001              logout            S001       allowed  
+2026-10-17T14:51:51.635Z  -                 login             S001       denied   Unexpected authentication response challenge "...", expected "..."
+2026-10-17T14:51:52.148Z  -                 login             S001       denied   signature not verified
+2026-10-17T14:51:54.713Z  S001              login             S001       allowed  
+2026-10-17T14:51:55.036Z  S001              student.read      S002       denied   role=student
+2026-10-17T14:51:56.468Z  S001              student.read      S002       denied   role=student
+2026-10-17T14:51:56.492Z  S001              grade.update      C101/S002  denied   role=student
+2026-10-17T14:52:01.007Z  L001              enroll.start      L001       allowed  
+2026-10-17T14:52:01.187Z  L001              passkey.register  L001       allowed  credential=Ad4uid_v...
+2026-10-17T14:52:01.383Z  L001              login             L001       allowed  
+2026-10-17T14:52:01.664Z  L001              grade.update      C101/S001  allowed  B+ -> A
+2026-10-17T14:52:01.824Z  L001              grade.update      C102/S002  denied   role=lecturer
+2026-10-17T14:52:01.852Z  -                 enroll.start      S001       denied   code already used
+2026-10-17T14:52:02.118Z  S001              logout            S001       allowed  
+2026-10-17T14:52:02.440Z  -                 login             (none)     denied   no pending challenge (used, expired or never issued)
+2026-10-17T14:52:02.444Z  S001              login             S001       allowed  
+2026-10-17T14:52:02.451Z  registrar-console course.unassign   L001/C101  allowed  1 row removed
+2026-10-17T14:52:02.456Z  L001              grade.update      C101/S001  denied   role=lecturer
+2026-10-17T14:52:02.464Z  L001              student.read      S001       denied   role=lecturer
